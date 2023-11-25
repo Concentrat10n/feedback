@@ -1,15 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'feedback/css/forms.css'%}">
-</head>
-<body>
+{% extends 'feedback/base.html'%}
+
+{% block title %} Страница отзывов {% endblock %}
+
+{% block content %}
     <h2>Оставьте отзыв</h2>
-    <form action="/" method="post">
+    <form method="post">
         {% csrf_token %}
+
         {% for field in form %}
             <div class="form-style {% if field.errors %} errors {% endif %}">
                 {{ field.label_tag }}
@@ -17,7 +14,7 @@
                 {{ field }}<br><br>
             </div>
         {% endfor %}
+
         <button>Отправить</button>
     </form>
-</body>
-</html>
+{% endblock %}
